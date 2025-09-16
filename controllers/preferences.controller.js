@@ -5,7 +5,7 @@ const getPreferences = (req, res) => {
 
   if (!user) return res.status(404).json({ message: "User not found" });
 
-  res.status(200).json({ preferences: user.preferences || [] });
+  res.status(200).json({ preferences: Array.isArray(user.preferences) ? user.preferences : [] });
 };
 
 const updatePreferences = (req, res) => {
@@ -19,8 +19,9 @@ const updatePreferences = (req, res) => {
 
   if (!user) return res.status(404).json({ message: "User not found" });
 
-  res.status(200).json({ preferences: user.preferences });
-}
+
+  res.status(200).json({ preferences: Array.isArray(user.preferences) ? user.preferences : [] });
+};
 
 module.exports = { getPreferences, updatePreferences };
-  
+

@@ -6,7 +6,7 @@ const authMiddleware = require("../middleware/auth.middleware");
 
 const router = express.Router();
 
-router.get("/preferences", authMiddleware, getPreferences);
-router.put("/preferences", authMiddleware, preferencesValidation, validateRequest, updatePreferences);
+router.get("/", authMiddleware, getPreferences);
+router.put("/", authMiddleware, preferencesValidation, validateRequest, updatePreferences);
 
 module.exports = router;
