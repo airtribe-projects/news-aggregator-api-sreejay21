@@ -6,7 +6,14 @@ const authMiddleware = require("../middleware/auth.middleware");
 
 const router = express.Router();
 
+// Group validation middlewares
+const preferencesMiddlewares = [
+    authMiddleware,
+    preferencesValidation,
+    validateRequest
+];
+
 router.get("/", authMiddleware, getPreferences);
-router.put("/", authMiddleware, preferencesValidation, validateRequest, updatePreferences);
+router.put("/", preferencesMiddlewares, updatePreferences);
 
 module.exports = router;
